@@ -1,10 +1,17 @@
 echo .bash_profile
-# 
-# PATH=/usr/local/bin:/usr/local/sbin:"$PATH"
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+  . ~/.bashrc
+fi
 
-export PATH="$HOME/.rbenv/shims:$HOME/.local/bin:$PATH"
-# export PATH="$HOME/.rbenv/shims:$HOME/.local/bin:$HOME/Library/Haskell/bin:$PATH"
-export PATH="$HOME/.composer/vendor/bin:$PATH"
+# User specific environment and startup programs
+
+PATH=$PATH:$HOME/bin
+PATH="$HOME/.rbenv/shims:$PATH"
+PATH="$HOME/.local/bin:$PATH"
+PATH="$HOME/.composer/vendor/bin:$PATH"
+
+export PATH
 
 eval "$(rbenv init -)"
 
@@ -14,11 +21,11 @@ fi
 
 source ~/.git-completion.bash
 
-export PATH="/usr/local/sbin:$PATH"
 
 eval "$(stack --bash-completion-script stack)"
 
-if [ -e /Users/jun/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/jun/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then
+  . $HOME/.nix-profile/etc/profile.d/nix.sh;
+fi # added by Nix installer
 
-. /Users/jun/.nix-profile/etc/profile.d/nix.sh
-
+alias show-path="echo $PATH | gsed -e 's/:/\\n/g'"
