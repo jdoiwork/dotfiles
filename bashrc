@@ -1,4 +1,4 @@
-echo .bashrc
+# echo .bashrc
 
 eval "$(rbenv init -)"
 
